@@ -36,8 +36,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void initView() {
         pullrv = (PullLoadRecyclerView) findViewById(R.id.pullrv);
-        pullrv.setSwipeRefreshColor(android.R.color.holo_blue_bright,android.R.color.holo_blue_dark,android.R.color.holo_blue_bright);
 
+        //设置下拉颜色
+        pullrv.setSwipeRefreshColor(android.R.color.holo_blue_bright,android.R.color.holo_blue_dark,android.R.color.holo_blue_bright);
 
         final Adapter adapter = new Adapter();
         datas = new ArrayList<>();
@@ -45,9 +46,10 @@ public class MainActivity extends AppCompatActivity {
             datas.add(i);
         }
         adapter.setDatas(datas);
+        //设置列数和滚动方向
         pullrv.setLayoutManager(4, LinearLayoutManager.VERTICAL);
         pullrv.setAdapter(adapter);
-
+        //设置监听
         pullrv.setOnPullLoadMoreListener(new PullLoadRecyclerView.OnPullLoadMoreListener() {
             @Override
             public void reRresh() {
