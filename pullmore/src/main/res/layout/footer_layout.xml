@@ -27,7 +27,7 @@
         android:text="正在加载更多"
         android:textColor="#FF999999"
         android:gravity="center"
-        android:textSize="16sp"/>
+        android:textSize="20sp"/>
 
 
 </LinearLayout>

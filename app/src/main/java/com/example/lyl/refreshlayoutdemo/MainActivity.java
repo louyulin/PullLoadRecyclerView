@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         //设置下拉颜色
         pullrv.setSwipeRefreshColor(android.R.color.holo_blue_bright,android.R.color.holo_blue_dark,android.R.color.holo_blue_bright);
 
+
         final Adapter adapter = new Adapter();
         datas = new ArrayList<>();
         for (int i = 0; i < anInt; i++) {
@@ -60,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
                         for (int i = 0; i < anInt; i++) {
                             datas.add(i);
                         }
-                        Toast.makeText(MainActivity.this, datas.size() + "", Toast.LENGTH_SHORT).show();
                         adapter.setDatas(datas);
                         pullrv.setRefreshCompleted();
                     }
@@ -69,18 +69,17 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void loadMore() {
-             mHandler.postDelayed(new Runnable() {
-                 @Override
-                 public void run() {
-                     addInt += 20;
-                     for (int i = addInt-20; i < addInt; i++) {
-                         datas.add(i);
-                     }
-                     Toast.makeText(MainActivity.this, datas.size() + "上拉", Toast.LENGTH_SHORT).show();
-                     adapter.setDatas(datas);
-                     pullrv.setLoadMoreCompleted();
-                 }
-             },2000);
+                mHandler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        addInt += 20;
+                        for (int i = addInt-20; i < addInt; i++) {
+                            datas.add(i);
+                        }
+                        adapter.setDatas(datas);
+                        pullrv.setLoadMoreCompleted();
+                    }
+                },2000);
             }
         });
 

@@ -4,17 +4,18 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
-import android.support.annotation.ColorRes;
+import android.graphics.drawable.Drawable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -31,6 +32,7 @@ public class PullLoadRecyclerView extends LinearLayout {
     private View mFootView;
     private AnimationDrawable mAnimationDrawable;
     private OnPullLoadMoreListener mOnPullLoadMoreListener;
+    private TextView textView;
 
     public PullLoadRecyclerView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
@@ -73,7 +75,7 @@ public class PullLoadRecyclerView extends LinearLayout {
         //imageView.setBackgroundResource(R.drawable.imooc_loading);
         //mAnimationDrawable = (AnimationDrawable) imageView.getBackground();
 
-        TextView textView = (TextView) mFootView.findViewById(R.id.tv_load_text);
+        textView = (TextView) mFootView.findViewById(R.id.tv_load_text);
         mFootView.setVisibility(View.GONE);
         //view 包含swipeRefreshLayout, RecyclerView, FootView
         this.addView(view);//
@@ -85,6 +87,34 @@ public class PullLoadRecyclerView extends LinearLayout {
             mSwipeRefreshLayout.setColorSchemeResources(colors[i]);
         }
     }
+
+    //设置底部据高度
+    public void setFootHeight(int height){
+        FrameLayout.LayoutParams p= (FrameLayout.LayoutParams) mFootView.getLayoutParams();
+        p.height = height;
+        mFootView.setLayoutParams(p);
+    }
+
+    //设置底布局字体大小
+    public void setFootTextSize(float size){
+        textView.setTextSize(size);
+    }
+
+    //设置底布局字体颜色
+    public void setFootTextColor(int color){
+        textView.setTextColor(color);
+    }
+
+    //设置底布局文字内容
+    public void setFootTextContent (String content) {
+        textView.setText(content);
+    }
+
+    //设置底部据背景颜色
+    public void setFootBackGroundColor(int color){
+        mFootView.setBackgroundColor(color);
+    }
+
 
     //外部可以设置recyclerview的列数
 
