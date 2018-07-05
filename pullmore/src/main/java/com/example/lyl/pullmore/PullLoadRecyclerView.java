@@ -34,6 +34,10 @@ public class PullLoadRecyclerView extends LinearLayout {
     private OnPullLoadMoreListener mOnPullLoadMoreListener;
     private TextView textView;
 
+    public RecyclerView getmRecyclerView() {
+        return mRecyclerView;
+    }
+
     public PullLoadRecyclerView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initView(context);

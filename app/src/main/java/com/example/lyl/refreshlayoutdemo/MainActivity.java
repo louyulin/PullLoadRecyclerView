@@ -21,8 +21,8 @@ public class MainActivity extends AppCompatActivity {
 
     private PullLoadRecyclerView pullrv;
     private List<Integer> datas;
-    private int anInt = 50;
-    private int addInt = 50;
+    private int anInt = 20;
+    private int addInt = 20;
     private Handler mHandler = new Handler(Looper.getMainLooper()){};
 
     @Override
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         }
         adapter.setDatas(datas);
         //设置列数和滚动方向
-        pullrv.setLayoutManager(4, LinearLayoutManager.VERTICAL);
+        pullrv.setLayoutManager(1, LinearLayoutManager.VERTICAL);
         pullrv.setAdapter(adapter);
         //设置监听
         pullrv.setOnPullLoadMoreListener(new PullLoadRecyclerView.OnPullLoadMoreListener() {
@@ -78,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
                         }
                         adapter.setDatas(datas);
                         pullrv.setLoadMoreCompleted();
+                        RecyclerView recyclerView = pullrv.getmRecyclerView();
+                        recyclerView.smoothScrollToPosition(datas.size()-20);
                     }
                 },2000);
             }
